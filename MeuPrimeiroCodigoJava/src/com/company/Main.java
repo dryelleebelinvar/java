@@ -1,5 +1,6 @@
 package com.company;  //caminho do arquivo
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Main {  //classe
     public static void main(String[] args)  //método(ação)
@@ -7,15 +8,17 @@ public class Main {  //classe
         System.out.println("Olá Mundo!! ");   //comando do sistema //saída do sistema //imprimir saída do sistema
         System.out.println("ESTE É O MEU PRIMEIRO CÓDIGO EM JAVA!!!");
 
+        /*
+
         String olaMundo = "Olá mundo, esta mensagem está dentro da variável.";
-        System.out.println(olaMundo);  //imprimir variável  //sout
+        System.out.println(olaMundo);
 
         String nome = "Dryelle";
         String sobrenome = "Ebelin";
         System.out.println(nome);
         System.out.println(sobrenome);
 
-        System.out.println(nome + " " + sobrenome);  //concatenação
+        System.out.println(nome + " " + sobrenome);
         System.out.println(18);
         System.out.println(2022 - 2004);
         System.out.println(3 * 5);
@@ -33,28 +36,20 @@ public class Main {  //classe
 
 
 
-
-
-        String retornoMetodo = buscarSobrenome();
-        System.out.println(retornoMetodo);
-
         String retornoMetodo2 = inserirNome();
         System.out.println(retornoMetodo2);
-
         int idade = calcularIdadePorAno();
         double imc = calcularIMC();
+
+        */
+
+        String retornoResumo = resumoPessoa();
+        System.out.println(retornoResumo);
     }
 
-    //tipo de acesso: (public ou private) (tipo de retorno) (nome do método) (parâmetros)
-    public static String buscarSobrenome()  //parâmetro
+    public static String inserirNome()  //tipo de acesso: (public ou private) (tipo de retorno) (nome do método) (parâmetros)
     {
-        String sobrenome = "Ebelin";
-        return sobrenome;
-    }
-
-    public static String inserirNome()
-    {
-        Scanner ler = new Scanner(System.in);  //variável de leitura, interação com o usuário
+        Scanner ler = new Scanner(System.in);  //variável de leitura = interação com o usuário
 
         System.out.printf("Digite seu nome: ");
         String nome = ler.next();
@@ -62,6 +57,7 @@ public class Main {  //classe
         String sobrenome = ler.next();
 
         String nomeCompleto = nome + " " + sobrenome;
+
         return nomeCompleto;
     }
 
@@ -76,11 +72,11 @@ public class Main {  //classe
         String classificacao = " ";
         if(calculoNascimento < 18)
         {
-            classificacao = "menor de idade";
+            classificacao = "menor de idade.";
         }
         else
         {
-            classificacao = "maior de idade";
+            classificacao = "maior de idade.";
         }
 
         System.out.println("Você tem " + calculoNascimento + " anos e é " + classificacao);
@@ -125,5 +121,28 @@ public class Main {  //classe
         }
 
         return calculoIMC;
+    }
+
+    public static String resumoPessoa(){
+        Scanner ler = new Scanner(System.in);
+
+        System.out.printf("Digite seu nome: ");
+        String nome = ler.next();
+        System.out.printf("Digite seu sobrenome: ");
+        String sobrenome = ler.next();
+        String nomeCompleto = nome + " " + sobrenome;
+
+        System.out.printf("Digite sua idade: ");
+        int idade = ler.nextInt();
+        String tipoDePessoa = "";
+        if(idade <= 17){
+            tipoDePessoa = "menor de idade";
+        } else{
+            tipoDePessoa = "maior de idade";
+        }
+
+        String resumo = "Seu nome completo é " + nomeCompleto + " e você é " + tipoDePessoa;
+
+        return resumo;
     }
 }
