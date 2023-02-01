@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="31370c72-8767-40b4-a1e8-62e061fcd847" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MeuPrimeiroCodigoJava/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MeuPrimeiroCodigoJava/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +35,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Dryelle Ebelin/Documents/dryelleebelinvar/java",
     "settings.editor.selected.configurable": "proofread"
   }
 }]]></component>
