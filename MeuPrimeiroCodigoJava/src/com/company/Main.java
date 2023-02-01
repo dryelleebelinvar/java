@@ -1,6 +1,8 @@
-package com.company;  //caminho do arquivo
+package com.company; //caminho do arquivo
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class Main {  //classe
     public static void main(String[] args)  //método(ação)
@@ -36,14 +38,15 @@ public class Main {  //classe
 
 
 
-        String retornoMetodo2 = inserirNome();
-        System.out.println(retornoMetodo2);
+
+        String retornoMetodo = inserirNome();
+        System.out.println(retornoMetodo);
         int idade = calcularIdadePorAno();
         double imc = calcularIMC();
 
-        */
+         */
 
-        String retornoResumo = resumoPessoa();
+        List<String> retornoResumo = resumoPessoa();
         System.out.println(retornoResumo);
     }
 
@@ -57,7 +60,6 @@ public class Main {  //classe
         String sobrenome = ler.next();
 
         String nomeCompleto = nome + " " + sobrenome;
-
         return nomeCompleto;
     }
 
@@ -123,26 +125,30 @@ public class Main {  //classe
         return calculoIMC;
     }
 
-    public static String resumoPessoa(){
+    public static List<String> resumoPessoa(){
         Scanner ler = new Scanner(System.in);
 
-        System.out.printf("Digite seu nome: ");
-        String nome = ler.next();
-        System.out.printf("Digite seu sobrenome: ");
-        String sobrenome = ler.next();
-        String nomeCompleto = nome + " " + sobrenome;
+        List<String> nomesResumo = new ArrayList<>();
 
-        System.out.printf("Digite sua idade: ");
-        int idade = ler.nextInt();
-        String tipoDePessoa = "";
-        if(idade <= 17){
-            tipoDePessoa = "menor de idade";
-        } else{
-            tipoDePessoa = "maior de idade";
+        for(int i = 1; i < 4; i ++){
+            System.out.printf("Digite seu nome: ");
+            String nome = ler.next();
+            System.out.printf("Digite seu sobrenome: ");
+            String sobrenome = ler.next();
+            String nomeCompleto = nome + " " + sobrenome;
+
+            System.out.printf("Digite sua idade: ");
+            int idade = ler.nextInt();
+            String tipoDePessoa = "";
+            if(idade <= 17){
+                tipoDePessoa = "menor de idade";
+            } else{
+                tipoDePessoa = "maior de idade";
+            }
+
+            String resumo = "O nome completo é " + nomeCompleto + ", você tem " + idade + " anos e é " + tipoDePessoa + ".";
+            nomesResumo.add(resumo);
         }
-
-        String resumo = "Seu nome completo é " + nomeCompleto + " e você é " + tipoDePessoa;
-
-        return resumo;
+        return nomesResumo;
     }
 }
