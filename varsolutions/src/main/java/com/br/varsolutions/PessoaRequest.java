@@ -1,14 +1,14 @@
 package com.br.varsolutions;
 
-public class Pessoa {
-    String nome;
-    String sobrenome;
-    String endereco;
-    int idade;
-    float peso;
-    float altura;
-    double salario;
-    String time;
+public class PessoaRequest {
+    public String nome;
+    public String sobrenome;
+    public String endereco;
+    public int idade;
+    public double peso;
+    public double altura;
+    public double salario;
+    public String time;
 
     public String getNome(){return nome;}
     public void setNome(String nome){this.nome = nome;}
@@ -22,11 +22,11 @@ public class Pessoa {
     public int getIdade(){return idade;}
     public void setIdade(int idade){this.idade = idade;}
 
-    public float getPeso(){return peso;}
-    public void setPeso(float peso){this.peso = peso;}
+    public double getPeso(){return peso;}
+    public void setPeso(double peso){this.peso = peso;}
 
-    public float getAltura(){return altura;}
-    public void setAltura(float altura){this.altura = altura;}
+    public double getAltura(){return altura;}
+    public void setAltura(double altura){this.altura = altura;}
 
     public double getSalario(){return salario;}
 
