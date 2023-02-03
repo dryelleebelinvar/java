@@ -57,19 +57,42 @@ public class PessoaController {
             }
 
             log.info("Montando objeto de retorno para o front-end.");
-            Object resumo = montarRespostaFrontEnd(imc, anoNascimento, impostoRenda, validaMundial);
+            PessoaResponse resumo = montarRespostaFrontEnd(pessoaRequest, imc, anoNascimento, impostoRenda, validaMundial);
 
             return ResponseEntity.ok(resumo);
         }
         return ResponseEntity.noContent().build();
     }
 
-    private Object montarRespostaFrontEnd(String imc, int anoNascimento, String impostoRenda, String validaMundial) {
-        return null;
+    private PessoaResponse montarRespostaFrontEnd(PessoaRequest pessoa ,String imc, int anoNascimento, String impostoRenda, String validaMundial) {
+        PessoaResponse response = new PessoaResponse();
+
+        response.setNome(pessoa.getNome());
+        response.setImc(imc);
+        response.setSalario(impostoRenda);
+        response.setAnoNascimento(anoNascimento);
+        response.setMundialClubes(validaMundial);
+        response.setIdade(pessoa.getIdade());
+
+        return response;
     }
 
     private String calculaMundial(String time) {
-        return null;
+        if(time.equalsIgnoreCase("Corinthians")) {
+            return "Parabéns, o seu time possui 2 mundiais de clubes conforme a FIFA";
+        } else if (time.equalsIgnoreCase("São Paulo")) {
+            return "Parabéns, o seu time possui 3 mundiais de clubes conforme a FIFA";
+        } else if (time.equalsIgnoreCase("Santos")) {
+            return "Parabéns, o seu time possui 2 mundiais de clubes conforme a FIFA";
+        } else if (time.equalsIgnoreCase("Grêmio")) {
+            return "Parabéns, o seu time possui 1 mundial de clubes conforme a FIFA";
+        } else if (time.equalsIgnoreCase("Flamengo")) {
+            return "Parabéns, o seu time possui 1 mundial de clubes conforme a FIFA";
+        } else if (time.equalsIgnoreCase("Internacional")) {
+            return "Parabéns, o seu time possui 1 mundial de clubes conforme a FIFA";
+        } else {
+            return "Poxa, que pena. Continue torcendo para seu clube ganhar um mundial";
+        }
     }
 
     //regra: salário bruto * alíquota - dedução
