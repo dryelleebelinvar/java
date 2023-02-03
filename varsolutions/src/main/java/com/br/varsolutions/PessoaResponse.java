@@ -1,22 +1,17 @@
 package com.br.varsolutions;
 
-public class PessoaResponse {
+public class PessoaResponse {  //saída
     public String nome;
+    public String sobrenome;
     public int idade;
-    public String imc;
-    public String classificacaoIMC;
-    public String iR;
-    public String aliquota;
     public int anoNascimento;
     public String mundialClubes;
-
-
-    public String sobrenome;
     public String endereco;
-    public double peso;
-    public double altura;
+    public String imc;
+    public String classificacaoIMC;
     public String salario;
-    public String time;
+    public String iR;
+    public String aliquota;
 
 
 
@@ -101,35 +96,11 @@ public class PessoaResponse {
         this.idade = idade;
     }
 
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        this.altura = altura;
-    }
-
     public String getSalario() {
         return salario;
     }
 
     public void setSalario(String salario) {
         this.salario = salario;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 }

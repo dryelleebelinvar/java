@@ -1,14 +1,16 @@
 package com.br.varsolutions;
 
-public class PessoaRequest {
+public class PessoaRequest {  //entrada
     public String nome;
     public String sobrenome;
-    public String endereco;
     public int idade;
+    public String time;
+    public String endereco;
     public double peso;
     public double altura;
     public double salario;
-    public String time;
+
+
 
     public String getNome(){return nome;}
     public void setNome(String nome){this.nome = nome;}

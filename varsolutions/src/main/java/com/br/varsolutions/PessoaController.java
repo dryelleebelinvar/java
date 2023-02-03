@@ -26,8 +26,8 @@ public class PessoaController {
         return ResponseEntity.ok(pessoaRequest1);
     }
     @GetMapping("/resumo")
-    public ResponseEntity<Object> getPessoa(@RequestBody PessoaRequest pessoaRequest){
-        String imc = null;
+    public ResponseEntity<Object> getPessoa(@RequestBody PessoaRequest pessoaRequest, @RequestParam(value = "valida_mundial") Boolean desejaValidarMundial){  //+atributo adicional
+        InformacoesIMC imc = new InformacoesIMC();
         int anoNascimento = 0;
         String impostoRenda = null;
         String validaMundial = null;
@@ -51,9 +51,11 @@ public class PessoaController {
                 impostoRenda = calculaFaixaImpostoRenda(pessoaRequest.getSalario());
             }
 
-            if(Objects.nonNull(pessoaRequest.getTime())){
-                log.info("Validando se o time de coração tem Mundial");
-                validaMundial = calculaMundial(pessoaRequest.getTime());
+            if(Boolean.TRUE.equals(desejaValidarMundial)){  //+atributo adicional
+                if(Objects.nonNull(pessoaRequest.getTime())){
+                    log.info("Validando se o time de coração tem Mundial");
+                    validaMundial = calculaMundial(pessoaRequest.getTime());
+                }
             }
 
             log.info("Montando objeto de retorno para o front-end.");
@@ -64,16 +66,18 @@ public class PessoaController {
         return ResponseEntity.noContent().build();
     }
 
-    private PessoaResponse montarRespostaFrontEnd(PessoaRequest pessoa ,String imc, int anoNascimento, String impostoRenda, String validaMundial) {
+    private PessoaResponse montarRespostaFrontEnd(PessoaRequest pessoa ,InformacoesIMC imc, int anoNascimento, String impostoRenda, String validaMundial) {
         PessoaResponse response = new PessoaResponse();
 
         response.setNome(pessoa.getNome());
-        response.setImc(imc);
-        response.setSalario(impostoRenda);
+        response.setSobrenome(pessoa.getSobrenome());
+        response.setIdade(pessoa.getIdade());
         response.setAnoNascimento(anoNascimento);
         response.setMundialClubes(validaMundial);
-        response.setIdade(pessoa.getIdade());
-
+        response.setEndereco(pessoa.getEndereco());
+        response.setImc(imc.getImc());
+        response.setClassificacaoIMC(imc.getClassificacao());
+        response.setSalario(impostoRenda);
         return response;
     }
 
@@ -128,24 +132,38 @@ public class PessoaController {
     private int calculaAnoNascimento(int idade) {
         LocalDate dataLocal = LocalDate.now();
         int anoAtual = dataLocal.getYear();
-        return anoAtual - idade;
+        return (anoAtual - idade) - 1;
     }
 
-    private String calculaIMC(double peso, double altura) {
-        double imc = peso / (altura * altura);
+    private InformacoesIMC calculaIMC(double peso, double altura) {  //parâmetros = atributos que o método espera receber para ser executado
+        double imc = Math.round(peso / (altura * altura));
+
+        InformacoesIMC imcCalculado = new InformacoesIMC(); //classe filha
 
         if (imc <= 18.5) {
-            return "Seu IMC é " + imc + " e você está abaixo do peso ideal.";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está abaixo do peso ideal");
+            return imcCalculado;
         } else if (imc >= 18.6 && imc <= 24.9) {
-            return "Seu IMC é " + imc + " e você está com o peso normal, parabéns!";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está com o peso normal, parabéns!");
+            return imcCalculado;
         } else if (imc >= 25 && imc <= 29.9) {
-            return "Seu IMC é " + imc + " e você está com pré-obesidade.";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está com pré-obesidade.");
+            return imcCalculado;
         } else if (imc >= 30 && imc <= 34.9) {
-            return "Seu IMC é " + imc + " e você está com obesidade grau I";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está com obesidade grau I");
+            return imcCalculado;
         } else if (imc >= 35 && imc <= 39.9) {
-            return "Seu IMC é " + imc + " e você está com obesidade grau II (severa)";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está com obesidade grau II (severa)");
+            return imcCalculado;
         } else {
-            return "Seu IMC é " + imc + " e você está com obesidade grau III (mórbida)";
+            imcCalculado.setImc(String.valueOf(imc));
+            imcCalculado.setClassificacao("Você está com obesidade grau III (mórbida)");
+            return imcCalculado;
         }
     }
 }
