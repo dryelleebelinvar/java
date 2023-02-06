@@ -1,5 +1,6 @@
 package com.br.varsolutions;
 //configurações pré-definidas
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -165,5 +166,21 @@ public class PessoaController {
             imcCalculado.setClassificacao("Você está com obesidade grau III (mórbida)");
             return imcCalculado;
         }
+    }
+
+    //implementação de métodos de exemplo
+    @DeleteMapping
+    public void retornoDelete() {
+
+    }
+
+    @PutMapping
+    public void retornoPut() {
+
+    }
+
+    @PostMapping
+    public void  retornoPost() {
+
     }
 }
